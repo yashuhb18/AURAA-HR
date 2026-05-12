@@ -91,6 +91,69 @@
         .oh-navbar__icon, .oh-navbar__clock-icon, .oh-navbar__toggle-menu, ion-icon {
             color: #ffffff !important;
         }
+        /* Dropdown & Notification Tray Polish */
+        .oh-navbar__notification-tray, .oh-dropdown__menu, .oh-navbar__notification-head, .oh-navbar__notification-footer, .oh-navbar__notification-item {
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #f1f5f9 !important;
+        }
+
+        .oh-navbar__notification-head-title, .oh-navbar__notification-text, .oh-dropdown__link, .oh-navbar__notification-tray-link {
+            color: #ffffff !important;
+        }
+
+        .oh-navbar__notification-date, .oh-navbar__notification-empty-desc {
+            color: #94a3b8 !important;
+        }
+
+        .oh-dropdown__item:hover, .oh-navbar__notification-item:hover {
+            background: rgba(139, 92, 246, 0.1) !important;
+        }
+
+        .oh-navbar__notification-head {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Fix missing icons/images visibility */
+        img {
+            filter: brightness(0.9) !important;
+        }
+
+        /* Ensure smooth transitions */
+        .oh-dropdown__menu, .oh-navbar__notification-tray {
+            transition: all 0.3s ease !important;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+        }
+        /* Form Elements & Selects */
+        select, option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 4px 8px !important;
+            border-radius: 6px !important;
+        }
+
+        /* Empty State Illustrations */
+        .oh-card-dashboard__empty-image, [src*="no_records.svg"], [src*="happy.svg"] {
+            filter: brightness(0) invert(1) opacity(0.6) !important;
+        }
+
+        /* Scrollbar Polish */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.3);
+        }
     </style>
 
     {% block styles %}{% endblock styles %}
