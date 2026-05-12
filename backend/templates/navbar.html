@@ -127,9 +127,13 @@
       <div class="oh-dropdown" x-data="{open: false}">
         <div class="oh-navbar__user-info" @click="open = !open">
           <div class="oh-navbar__user-photo">
-            <img src="./static/images/upload/userphoto.png" class="oh-navbar__user-image" loading="lazy" />
+            {% if request.user.employee_get.employee_profile %}
+              <img src="{{request.user.employee_get.employee_profile.url}}" class="oh-navbar__user-image" loading="lazy" />
+            {% else %}
+              <img src="https://ui-avatars.com/api/?name={{request.user.first_name}}&background=random" class="oh-navbar__user-image" loading="lazy" />
+            {% endif %}
           </div>
-          <span class="oh-navbar__user-name">Lizaveta Ivanovna</span>
+          <span class="oh-navbar__user-name">{{request.user.first_name|default:request.user.username}}</span>
         </div>
         <div class="oh-dropdown__menu oh-dropdown__menu--right" x-show="open" @click.outside="open = false">
           <ul class="oh-dropdown__items">
