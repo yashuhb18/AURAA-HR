@@ -1,0 +1,180 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* AuraaHR AI Global Styles */
+
+@layer base {
+  :root {
+    --color-primary: #5b81ff;
+    --color-secondary: #a855f7;
+    --color-accent-cyan: #06b6d4;
+    --color-accent-emerald: #10b981;
+    --color-bg-dark: #0f172a;
+    --color-bg-darker: #030712;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-glass-bg: rgba(15, 23, 42, 0.8);
+    --color-glass-border: rgba(203, 213, 225, 0.1);
+  }
+
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950;
+    @apply text-slate-100 font-sans;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism Utilities */
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-xl bg-slate-900/50 border border-white/10 rounded-2xl;
+  }
+
+  .glass-sm {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl;
+  }
+
+  /* Modern Card */
+  .card-modern {
+    @apply glass p-6 hover:border-white/40 hover:shadow-glow transition-all duration-300;
+  }
+
+  .card-modern-sm {
+    @apply glass-sm p-4 hover:border-white/30 transition-all duration-300;
+  }
+
+  /* Gradient Buttons */
+  .btn-gradient {
+    @apply bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-glow;
+  }
+
+  .btn-gradient-sm {
+    @apply bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent border border-purple-500 text-purple-400 hover:bg-purple-500/10 font-medium py-3 px-6 rounded-xl transition-all duration-300;
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  /* Animated Border */
+  .border-animated {
+    @apply relative;
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0)) !important;
+    background-size: 200% auto;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  /* Stat Card */
+  .stat-card {
+    @apply glass-sm p-6 rounded-xl;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold text-gradient-primary my-2;
+  }
+
+  .stat-label {
+    @apply text-sm text-slate-400 font-medium;
+  }
+
+  .stat-change {
+    @apply text-xs font-semibold mt-2;
+  }
+
+  .stat-change-up {
+    @apply text-emerald-400;
+  }
+
+  .stat-change-down {
+    @apply text-rose-400;
+  }
+
+  /* Input Styles */
+  .input-modern {
+    @apply bg-slate-950/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200;
+  }
+
+  .input-modern:focus {
+    @apply border-purple-500 ring-2 ring-purple-500/20;
+  }
+
+  /* Badge */
+  .badge-primary {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/30;
+  }
+
+  .badge-success {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30;
+  }
+
+  .badge-danger {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30;
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    @apply animate-pulse bg-slate-800 rounded-lg;
+  }
+}
+
+/* Dark Mode Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(51, 65, 85, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: #000;
+  }
+}

@@ -1,0 +1,362 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Unified Workforce Intelligence Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/aurora.css' %}">
+    
+    <style>
+        @keyframes aurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3); }
+        }
+        
+        .aurora-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+            background-size: 400% 400%;
+            animation: aurora 8s ease infinite;
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .glow-pulse {
+            animation: glow 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 text-slate-100 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="glass-effect border-b border-slate-700 fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM15.657 14.243a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM11 17a1 1 0 102 0v-1a1 1 0 10-2 0v1zM5.757 15.657a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zM2 10a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.757 5.757a1 1 0 001.414-1.414L6.464 3.636a1 1 0 00-1.414 1.414l.707.707z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-gradient-primary">AuraHR</h1>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="{% url 'login' %}" class="text-slate-300 hover:text-white transition-colors font-medium">Login</a>
+                <button class="btn-gradient-sm">Get Started</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="aurora-bg absolute inset-0 opacity-10"></div>
+            <div class="absolute top-20 left-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-10 floating"></div>
+            <div class="absolute top-40 right-20 w-96 h-96 bg-cyan-500 rounded-full blur-3xl opacity-10 floating" style="animation-delay: 1s;"></div>
+            <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-indigo-500 rounded-full blur-3xl opacity-10 floating" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span class="text-sm text-purple-300 font-medium">✨ Backed by AI - Trusted by Enterprises</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+                <span class="text-gradient">Unified Workforce</span><br>
+                <span class="text-gradient">Intelligence Platform</span>
+            </h1>
+            
+            <p class="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                Transform fragmented HR systems into unified workforce intelligence. Leverage AI-powered insights for recruitment, attendance, payroll, and predictive analytics—all in one platform.
+            </p>
+            
+            <div class="flex gap-4 justify-center mb-12">
+                <button class="btn-gradient">
+                    <span>Start Free Trial</span>
+                </button>
+                <button class="btn-ghost">
+                    <span>Watch Demo</span>
+                </button>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 md:grid-cols-3 gap-8 mt-16 pt-12 border-t border-slate-700">
+                <div>
+                    <p class="text-4xl font-bold text-gradient-primary">500+</p>
+                    <p class="text-slate-400 text-sm mt-2">Companies Trust Us</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-gradient-primary">2M+</p>
+                    <p class="text-slate-400 text-sm mt-2">Employees Managed</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold text-gradient-primary">99.9%</p>
+                    <p class="text-slate-400 text-sm mt-2">Uptime SLA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="max-w-6xl mx-auto px-4 py-20 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Enterprise-Grade AI Features</h2>
+            <p class="text-slate-400">Everything you need to manage and predict workforce dynamics</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="card-modern">
+                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600/30 to-indigo-600/30 border border-purple-500/30">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Employee Intelligence</h3>
+                <p class="text-slate-400">AI-powered analytics on employee performance, engagement, and development potential</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="card-modern">
+                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-600/30 to-blue-600/30 border border-cyan-500/30">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Recruitment AI</h3>
+                <p class="text-slate-400">Smart hiring recommendations and resume analysis powered by machine learning</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="card-modern">
+                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-600/30 to-green-600/30 border border-emerald-500/30">
+                    <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Attendance Analytics</h3>
+                <p class="text-slate-400">Real-time attendance tracking with anomaly detection and trend analysis</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="card-modern">
+                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-rose-600/30 to-pink-600/30 border border-rose-500/30">
+                    <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Payroll Insights</h3>
+                <p class="text-slate-400">Automated payroll processing with predictive salary benchmarking</p>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="card-modern">
+                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-amber-600/30 to-orange-600/30 border border-amber-500/30">
+                    <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Attrition Prediction</h3>
+                <p class="text-slate-400">Predict employee attrition risks before they happen with AI algorithms</p>
+            </div>
+            
+            <!-- Feature 6 -->
+            <div class="card-modern">
+                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-600/30 to-purple-600/30 border border-indigo-500/30">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 0a2 2 0 104 0m6 0a2 2 0 104 0"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Advanced Analytics</h3>
+                <p class="text-slate-400">Custom dashboards and reports for workforce strategy and planning</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Dashboard Preview -->
+    <section class="max-w-6xl mx-auto px-4 py-20 relative z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Intelligent Dashboard</h2>
+            <p class="text-slate-400">Everything at a glance with our intuitive interface</p>
+        </div>
+        
+        <div class="card-modern p-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop" alt="Dashboard" class="w-full h-96 object-cover opacity-50">
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="max-w-6xl mx-auto px-4 py-20 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+            <p class="text-slate-400">Scale with your organization</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Plan 1 -->
+            <div class="card-modern">
+                <h3 class="text-xl font-semibold mb-2">Starter</h3>
+                <p class="text-slate-400 text-sm mb-4">For growing teams</p>
+                <p class="text-4xl font-bold text-gradient-primary mb-6">$99<span class="text-lg text-slate-400">/mo</span></p>
+                <ul class="space-y-3 mb-6 text-sm text-slate-400">
+                    <li>✓ Up to 500 employees</li>
+                    <li>✓ Basic analytics</li>
+                    <li>✓ Email support</li>
+                </ul>
+                <button class="btn-ghost w-full">Get Started</button>
+            </div>
+            
+            <!-- Plan 2 -->
+            <div class="card-modern border-2 border-purple-500/50 relative">
+                <div class="badge-primary absolute -top-4 left-1/2 transform -translate-x-1/2">Popular</div>
+                <h3 class="text-xl font-semibold mb-2">Professional</h3>
+                <p class="text-slate-400 text-sm mb-4">For enterprises</p>
+                <p class="text-4xl font-bold text-gradient-primary mb-6">$299<span class="text-lg text-slate-400">/mo</span></p>
+                <ul class="space-y-3 mb-6 text-sm text-slate-400">
+                    <li>✓ Up to 5,000 employees</li>
+                    <li>✓ Advanced AI features</li>
+                    <li>✓ Priority support</li>
+                    <li>✓ Custom integrations</li>
+                </ul>
+                <button class="btn-gradient w-full">Start Free Trial</button>
+            </div>
+            
+            <!-- Plan 3 -->
+            <div class="card-modern">
+                <h3 class="text-xl font-semibold mb-2">Enterprise</h3>
+                <p class="text-slate-400 text-sm mb-4">For large organizations</p>
+                <p class="text-4xl font-bold text-gradient-primary mb-6">Custom</p>
+                <ul class="space-y-3 mb-6 text-sm text-slate-400">
+                    <li>✓ Unlimited employees</li>
+                    <li>✓ All AI features</li>
+                    <li>✓ Dedicated support</li>
+                    <li>✓ Custom SLAs</li>
+                </ul>
+                <button class="btn-ghost w-full">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="max-w-4xl mx-auto px-4 py-20 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="space-y-4">
+            <details class="card-modern group cursor-pointer">
+                <summary class="flex items-center justify-between font-semibold">
+                    <span>How long does implementation take?</span>
+                    <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </summary>
+                <p class="mt-4 text-slate-400">Most implementations are completed within 2-4 weeks, depending on data migration complexity. Our team provides full support throughout the process.</p>
+            </details>
+            
+            <details class="card-modern group cursor-pointer">
+                <summary class="flex items-center justify-between font-semibold">
+                    <span>Is my data secure?</span>
+                    <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </summary>
+                <p class="mt-4 text-slate-400">Yes. We use enterprise-grade encryption, regular security audits, and comply with GDPR, HIPAA, and SOC 2 standards.</p>
+            </details>
+            
+            <details class="card-modern group cursor-pointer">
+                <summary class="flex items-center justify-between font-semibold">
+                    <span>Do you offer API access?</span>
+                    <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </summary>
+                <p class="mt-4 text-slate-400">Yes, comprehensive REST APIs are available on all plans, allowing you to integrate with your existing systems.</p>
+            </details>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="max-w-4xl mx-auto px-4 py-20 relative z-10">
+        <div class="card-modern text-center">
+            <h2 class="text-4xl font-bold mb-4">Ready to Transform Your HR?</h2>
+            <p class="text-slate-400 mb-8 text-lg">Join 500+ companies managing their workforce with intelligence</p>
+            <button class="btn-gradient inline-block">Start Your Free Trial Today</button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="border-t border-slate-700 mt-20 py-12 relative z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg"></div>
+                        <span class="font-bold">AuraHR</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Unified Workforce Intelligence Platform</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 pt-8 text-center text-slate-400 text-sm">
+                <p>© 2024 auraahra. All rights reserved. | Enterprise Workforce Intelligence Platform</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
