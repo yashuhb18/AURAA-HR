@@ -10,11 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script>
-        var at_work_seconds = {{ request.user.employee_get.get_forecasted_at_work.forecasted_at_work_seconds }}
-        var run = 0
-    </script>
-    <title class="time-runner stop-runner">{{white_label_company_name}}</title>
+    <title>{{white_label_company_name}}</title>
     
     <!-- Modern Branding & Design System -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,129 +18,95 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link rel="stylesheet" href="{% static 'build/css/driver.min.css' %}" />
-    <meta name="theme-color" content="#5b81ff">
-    <link rel="manifest" href="{% static 'build/manifest.json' %}">
-    
-    <!-- Legacy Styles -->
     <link rel="stylesheet" href="{% static 'build/css/style.min.css' %}" />
     <link rel="stylesheet" href="{% static 'build/css/sweetalert2.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     
-    <!-- Legacy Styles & Scripts -->
-    <link rel="stylesheet" href="{% static 'build/css/summernote-lite.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'build/css/orgChart.css' %}" />
-    <link rel="stylesheet" href="{% static '/jquery/jqueryui.css' %}">
-    <link rel="stylesheet" href="{% static 'build/css/pivottable.min.css' %}" />
-    <script src="{% static '/jquery/ajax.js' %}"></script>
     <script src="{% static '/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/jquery/ajax.js' %}"></script>
     <script src="{% static '/jquery/jqueryui.js' %}"></script>
-    <script src="{% static '/base/toggleColumn.js' %}"></script>
-    <script src="{% static '/build/js/orgChart.js' %}"></script>
-    <script src="{% static 'build/js/driver.js' %}"></script>
-    <script src="{% static 'build/js/clearFilter.js' %}"></script>
 
     <style>
-        :root {
-            --primary-glow: conic-gradient(from 180deg at 50% 50%, #16abff33 0deg, #0885ff33 55deg, #54d6ff33 120deg, #0071ff33 160deg, transparent 360deg);
-            --secondary-glow: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-        }
-
         body {
             background: radial-gradient(circle at top right, #1e1b4b, #020617) !important;
             color: #f1f5f9 !important;
             font-family: 'Inter', sans-serif !important;
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
         }
 
-        /* Global Header Fix */
-        h1, h2, h3, h4, h5, h6, .oh-main__titlebar-title, .oh-navbar__page-title {
-            color: #ffffff !important;
-            font-family: 'Space Grotesk', sans-serif !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.5px !important;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+        .oh-sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 260px !important;
+            height: 100vh !important;
+            z-index: 1000 !important;
+            background: rgba(15, 23, 42, 0.9) !important;
+            backdrop-filter: blur(12px) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+            overflow-y: auto !important;
+        }
+
+        .oh-main__content-wrapper {
+            margin-left: 260px !important;
+            min-height: 100vh !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .oh-navbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 900 !important;
+            background: rgba(15, 23, 42, 0.8) !important;
+            backdrop-filter: blur(8px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            width: 100% !important;
+        }
+
+        .oh-main__content {
+            padding: 2rem !important;
+            flex: 1 !important;
         }
 
         /* Glassmorphism System */
-        .oh-sidebar, .oh-navbar, .oh-activity-sidebar, .oh-modal__dialog, .oh-card, .oh-wrapper, .oh-general-settings__card, .oh-card__body, .oh-card__header {
+        .oh-sidebar, .oh-navbar, .oh-card, .oh-wrapper, .oh-card-dashboard {
             background: rgba(15, 23, 42, 0.7) !important;
             backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #f1f5f9 !important;
         }
 
-        .oh-sidebar { border-right: 1px solid rgba(255, 255, 255, 0.1) !important; }
-        .oh-navbar { border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
-
-        /* Sidebar Styling */
-        .oh-sidebar__menu-link {
-            color: #94a3b8 !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .oh-sidebar__menu-link--active, .oh-sidebar__menu-link:hover {
-            background: linear-gradient(90deg, rgba(139, 92, 246, 0.15), transparent) !important;
-            color: #c084fc !important;
-            border-left: 3px solid #8b5cf6 !important;
-        }
-
-        .oh-sidebar__submenu {
-            background: rgba(15, 23, 42, 0.9) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
-        }
-
-        /* Transparency & Visibility Fixes */
-        .oh-card__body, .oh-sticky-table__thead, .oh-sticky-table__tbody, .oh-profile, .oh-profile__avatar, .oh-profile__info, .oh-profile__name, .oh-profile__desc, .bg-white, .white-bg, .oh-profile--md {
-            background: transparent !important;
+        /* Visibility Fixes */
+        h1, h2, h3, h4, .oh-navbar__page-title, .oh-main__titlebar-title {
+            color: #ffffff !important;
+            font-family: 'Space Grotesk', sans-serif !important;
         }
 
         .oh-text--dark, p, span, label, td, th {
             color: #f1f5f9 !important;
         }
 
-        /* Breadcrumbs */
-        .oh-navbar__breadcrumb-link, .oh-navbar__breadcrumb-item, .oh-navbar__breadcrumb-separator {
-            color: #94a3b8 !important;
-        }
-
-        /* Buttons & Inputs */
-        .oh-btn--primary, .oh-btn--success {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
-            border: none !important;
-            color: white !important;
-        }
-
-        input, select, textarea {
-            background: rgba(0, 0, 0, 0.4) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: white !important;
-        }
-
         .oh-navbar__icon, .oh-navbar__clock-icon, .oh-navbar__toggle-menu, ion-icon {
-            color: #f1f5f9 !important;
+            color: #ffffff !important;
         }
     </style>
 
-    {% block styles %}
-    {% endblock styles %}
+    {% block styles %}{% endblock styles %}
 </head>
 
 <body class="oh-body">
-    <div id="main-section-data" style="display: none;" data-lang="{{LANGUAGE_CODE}}">
-        <div class="oh-main">
-            {% include 'sidebar.html' %}
+    <div class="oh-main">
+        {% include 'sidebar.html' %}
 
-            <div class="oh-main__content-wrapper">
-                {% include 'navbar.html' %}
+        <div class="oh-main__content-wrapper">
+            {% include 'navbar.html' %}
 
-                <main class="oh-main__content" id="view-container">
-                    {% block content %}
-                    {% endblock %}
-                </main>
-            </div>
+            <main class="oh-main__content" id="view-container">
+                {% block content %}
+                {% endblock %}
+            </main>
         </div>
     </div>
 
@@ -156,13 +118,6 @@
     <script src="{% static 'build/js/sweetalert2.min.js' %}"></script>
     <script src="{% static 'build/js/main.js' %}"></script>
     
-    {% block scripts %}
-    {% endblock scripts %}
-
-    <script>
-        $(document).ready(function() {
-            $('#main-section-data').fadeIn(500);
-        });
-    </script>
+    {% block scripts %}{% endblock scripts %}
 </body>
 </html>
