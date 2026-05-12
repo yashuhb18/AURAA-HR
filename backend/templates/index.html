@@ -54,6 +54,7 @@
             min-height: 100vh !important;
             display: flex !important;
             flex-direction: column !important;
+            position: relative !important;
         }
 
         .oh-navbar {
@@ -69,91 +70,71 @@
         .oh-main__content {
             padding: 2rem !important;
             flex: 1 !important;
+            overflow-y: auto !important;
+            max-height: calc(100vh - 70px) !important;
         }
 
         /* Glassmorphism System */
-        .oh-sidebar, .oh-navbar, .oh-card, .oh-wrapper, .oh-card-dashboard {
-            background: rgba(15, 23, 42, 0.7) !important;
+        .oh-card, .oh-wrapper, .oh-card-dashboard, .oh-navbar__notification-tray, .oh-dropdown__menu, .oh-navbar__notification-head, .oh-navbar__notification-footer, .oh-navbar__notification-item {
+            background: rgba(15, 23, 42, 0.8) !important;
             backdrop-filter: blur(12px) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #f1f5f9 !important;
         }
 
         /* Visibility Fixes */
-        h1, h2, h3, h4, .oh-navbar__page-title, .oh-main__titlebar-title {
+        h1, h2, h3, h4, .oh-navbar__page-title, .oh-main__titlebar-title, .oh-navbar__notification-head-title, .oh-navbar__notification-text, .oh-dropdown__link, .oh-navbar__notification-tray-link {
             color: #ffffff !important;
             font-family: 'Space Grotesk', sans-serif !important;
         }
 
-        .oh-text--dark, p, span, label, td, th {
+        .oh-text--dark, p, span, label, td, th, .oh-sidebar__submenu-link, .oh-sidebar__menu-label, .oh-navbar__user-name, .oh-card-dashboard__title {
             color: #f1f5f9 !important;
         }
 
         .oh-navbar__icon, .oh-navbar__clock-icon, .oh-navbar__toggle-menu, ion-icon {
             color: #ffffff !important;
         }
-        /* Dropdown & Notification Tray Polish */
-        .oh-navbar__notification-tray, .oh-dropdown__menu, .oh-navbar__notification-head, .oh-navbar__notification-footer, .oh-navbar__notification-item {
-            background: rgba(15, 23, 42, 0.95) !important;
-            backdrop-filter: blur(20px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #f1f5f9 !important;
+
+        /* Fixed Dropdown Positioning */
+        .oh-navbar__notification-tray {
+            position: fixed !important;
+            right: 120px !important;
+            top: 70px !important;
+            width: 380px !important;
+            z-index: 99999 !important;
         }
 
-        .oh-navbar__notification-head-title, .oh-navbar__notification-text, .oh-dropdown__link, .oh-navbar__notification-tray-link {
-            color: #ffffff !important;
+        .oh-dropdown__menu {
+            position: fixed !important;
+            right: 20px !important;
+            top: 70px !important;
+            width: 250px !important;
+            z-index: 99999 !important;
         }
 
-        .oh-navbar__notification-date, .oh-navbar__notification-empty-desc {
-            color: #94a3b8 !important;
+        /* Ensure dropdowns are above modals and cards */
+        .oh-navbar__notification-tray, .oh-dropdown__menu {
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9) !important;
+            pointer-events: auto !important;
         }
 
-        .oh-dropdown__item:hover, .oh-navbar__notification-item:hover {
-            background: rgba(139, 92, 246, 0.1) !important;
-        }
-
-        .oh-navbar__notification-head {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        }
-
-        /* Fix missing icons/images visibility */
-        img {
-            filter: brightness(0.9) !important;
-        }
-
-        /* Ensure smooth transitions */
-        .oh-dropdown__menu, .oh-navbar__notification-tray {
-            transition: all 0.3s ease !important;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
-        }
-        /* Form Elements & Selects */
-        select, option {
-            background: #0f172a !important;
+        /* Form Elements & Inputs */
+        select, option, .oh-pagination__input, input[type="number"], .oh-input, .oh-select, .oh-search-bar input {
+            background: rgba(0, 0, 0, 0.6) !important;
             color: #ffffff !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            padding: 4px 8px !important;
             border-radius: 6px !important;
         }
 
-        /* Empty State Illustrations */
-        .oh-card-dashboard__empty-image, [src*="no_records.svg"], [src*="happy.svg"] {
-            filter: brightness(0) invert(1) opacity(0.6) !important;
-        }
-
         /* Scrollbar Polish */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.3);
-        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.3); }
+
+        /* Eliminate Duplicate Navbar */
+        .oh-main__content-wrapper > .oh-navbar:last-child { display: none !important; }
     </style>
 
     {% block styles %}{% endblock styles %}
