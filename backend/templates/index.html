@@ -5,7 +5,6 @@
 <html>
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% get_current_language as LANGUAGE_CODE %}
-{% comment %} <html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" lang="{{ LANGUAGE_CODE }}"> {% endcomment %}
 
 <head>
     <meta charset="utf-8">
@@ -32,7 +31,7 @@
     <link rel="stylesheet" href="{% static 'build/css/sweetalert2.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     
-    <!-- Legacy Styles & Scripts (RESTORED) -->
+    <!-- Legacy Styles & Scripts -->
     <link rel="stylesheet" href="{% static 'build/css/summernote-lite.min.css' %}" />
     <link rel="stylesheet" href="{% static 'build/css/orgChart.css' %}" />
     <link rel="stylesheet" href="{% static '/jquery/jqueryui.css' %}">
@@ -56,30 +55,31 @@
             color: #f1f5f9 !important;
             font-family: 'Inter', sans-serif !important;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, .oh-navbar__page-title, .oh-sidebar__menu-link span, .oh-main__titlebar-title {
+        /* Global Header Fix */
+        h1, h2, h3, h4, h5, h6, .oh-main__titlebar-title, .oh-navbar__page-title {
+            color: #ffffff !important;
             font-family: 'Space Grotesk', sans-serif !important;
-            color: #f1f5f9 !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
         }
 
-        /* Glassmorphism Overrides */
-        .oh-sidebar, .oh-navbar, .oh-activity-sidebar, .oh-modal__dialog, .oh-card, .oh-wrapper, .oh-general-settings__card {
+        /* Glassmorphism System */
+        .oh-sidebar, .oh-navbar, .oh-activity-sidebar, .oh-modal__dialog, .oh-card, .oh-wrapper, .oh-general-settings__card, .oh-card__body, .oh-card__header {
             background: rgba(15, 23, 42, 0.7) !important;
             backdrop-filter: blur(12px) !important;
             -webkit-backdrop-filter: blur(12px) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #f1f5f9 !important;
         }
 
-        .oh-sidebar {
-            border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-        }
+        .oh-sidebar { border-right: 1px solid rgba(255, 255, 255, 0.1) !important; }
+        .oh-navbar { border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
 
-        .oh-navbar {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        }
-
-        /* Menu & Sidebar Branding */
+        /* Sidebar Styling */
         .oh-sidebar__menu-link {
             color: #94a3b8 !important;
             transition: all 0.3s ease !important;
@@ -91,264 +91,40 @@
             border-left: 3px solid #8b5cf6 !important;
         }
 
-        /* Text Contrast Fixes */
-        .oh-text--dark, p, span, label, td, th, h1, h2, h3, h4, h5, h6, .oh-profile__name {
-            color: #f1f5f9 !important;
+        .oh-sidebar__submenu {
+            background: rgba(15, 23, 42, 0.9) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
         }
 
-        .oh-card, .oh-wrapper, .oh-main__content, .oh-general-settings__card, .oh-card__body, .oh-card__header {
-            background: rgba(15, 23, 42, 0.7) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #f1f5f9 !important;
-        }
-
-        /* Fix for White Boxes in Dashboard */
-        .oh-card__body, .oh-sticky-table__thead, .oh-sticky-table__tbody {
+        /* Transparency & Visibility Fixes */
+        .oh-card__body, .oh-sticky-table__thead, .oh-sticky-table__tbody, .oh-profile, .oh-profile__avatar, .oh-profile__info, .oh-profile__name, .oh-profile__desc, .bg-white, .white-bg, .oh-profile--md {
             background: transparent !important;
         }
 
-        .oh-main__titlebar-title {
-            color: white !important;
+        .oh-text--dark, p, span, label, td, th {
+            color: #f1f5f9 !important;
+        }
+
+        /* Breadcrumbs */
+        .oh-navbar__breadcrumb-link, .oh-navbar__breadcrumb-item, .oh-navbar__breadcrumb-separator {
+            color: #94a3b8 !important;
         }
 
         /* Buttons & Inputs */
-        .oh-btn--primary, .oh-btn--success, .oh-btn--danger {
-            border-radius: 8px !important;
-            text-transform: none !important;
-            font-weight: 600 !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .oh-btn--primary {
+        .oh-btn--primary, .oh-btn--success {
             background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
             border: none !important;
+            color: white !important;
         }
 
         input, select, textarea {
             background: rgba(0, 0, 0, 0.4) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
             color: white !important;
-            border-radius: 6px !important;
         }
-        /* Navbar & Systray Fixes */
+
         .oh-navbar__icon, .oh-navbar__clock-icon, .oh-navbar__toggle-menu, ion-icon {
             color: #f1f5f9 !important;
-            filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.3));
-        }
-
-        .oh-navbar__clock-text, .oh-navbar__user-name, .oh-navbar__page-title {
-            color: #f1f5f9 !important;
-            font-weight: 600 !important;
-        }
-
-        .oh-navbar__systray {
-            gap: 1.5rem !important;
-        }
-
-        /* Profile Dropdown Fix */
-        .oh-dropdown__menu {
-            background: #0f172a !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-        }
-
-        .oh-dropdown__link {
-            color: #cbd5e1 !important;
-        }
-
-        .oh-dropdown__link:hover {
-            background: rgba(139, 92, 246, 0.1) !important;
-            color: #c084fc !important;
-        }
-
-        /* AuraHR dashboard surface polish */
-        .oh-wrapper-main,
-        #main,
-        .oh-main,
-        .oh-main__content,
-        .oh-wrapper {
-            background:
-                radial-gradient(circle at 10% 0%, rgba(91, 129, 255, 0.18), transparent 28rem),
-                radial-gradient(circle at 95% 10%, rgba(16, 185, 129, 0.13), transparent 24rem),
-                linear-gradient(135deg, #0b1023 0%, #101633 48%, #14113a 100%) !important;
-            color: #f8fafc !important;
-        }
-
-        .oh-wrapper {
-            border-color: rgba(148, 163, 184, 0.18) !important;
-        }
-
-        .oh-dashboard,
-        .oh-dashboard__cards,
-        .oh-dashboard__movable-cards {
-            background: transparent !important;
-        }
-
-        .oh-card-dashboard,
-        .oh-dashboard__events,
-        .oh-dashboard-card,
-        .oh-card,
-        .oh-general-settings__card,
-        .oh-sticky-table,
-        .oh-table,
-        .oh-kanban-card,
-        .oh-tabs,
-        .oh-modal__dialog {
-            background: rgba(17, 24, 50, 0.92) !important;
-            color: #f8fafc !important;
-            border: 1px solid rgba(148, 163, 184, 0.22) !important;
-            border-radius: 8px !important;
-            box-shadow: 0 18px 44px rgba(2, 6, 23, 0.34) !important;
-        }
-
-        .oh-card-dashboard--transparent,
-        .oh-card-dashboard--no-scale {
-            background: rgba(17, 24, 50, 0.92) !important;
-        }
-
-        .oh-card-dashboard__header,
-        .oh-card-dashboard__body,
-        .oh-card__header,
-        .oh-card__body,
-        .oh-dashboard__event-main,
-        .oh-sticky-table__thead,
-        .oh-sticky-table__tbody,
-        .oh-table__thead,
-        .oh-table__tbody {
-            background: transparent !important;
-            color: #f8fafc !important;
-        }
-
-        .oh-card-dashboard__header--divider,
-        .oh-card-dashboard hr,
-        .oh-card hr,
-        .oh-sticky-table__tr,
-        .oh-table__tr,
-        .oh-sticky-table__td,
-        .oh-sticky-table__th,
-        .oh-table__td,
-        .oh-table__th {
-            border-color: rgba(148, 163, 184, 0.18) !important;
-        }
-
-        .oh-card-dashboard__title,
-        .oh-card-dashboard__count,
-        .oh-dashboard__event-title,
-        .oh-empty__title,
-        .oh-main__titlebar-title,
-        .oh-sticky-table__th,
-        .oh-table__th {
-            color: #f8fafc !important;
-            opacity: 1 !important;
-        }
-
-        .oh-card-dashboard__count {
-            font-weight: 700 !important;
-            color: #dbeafe !important;
-        }
-
-        .oh-card-dashboard p,
-        .oh-card-dashboard span,
-        .oh-card-dashboard label,
-        .oh-card-dashboard td,
-        .oh-card-dashboard th,
-        .oh-card p,
-        .oh-card span,
-        .oh-card label,
-        .oh-sticky-table td,
-        .oh-sticky-table th,
-        .oh-table td,
-        .oh-table th,
-        .oh-empty__subtitle,
-        .oh-dashboard__event-date {
-            color: #dbe4f0 !important;
-            opacity: 1 !important;
-        }
-
-        .oh-card-dashboard a,
-        .oh-card a,
-        .oh-table a,
-        .oh-sticky-table a {
-            color: #93c5fd !important;
-        }
-
-        .oh-card-dashboard--success {
-            border-top: 4px solid #10b981 !important;
-        }
-
-        .oh-card-dashboard--warning {
-            border-top: 4px solid #f59e0b !important;
-        }
-
-        .oh-card-dashboard--neutral {
-            border-top: 4px solid #93a4bc !important;
-        }
-
-        .oh-card-dashboard--danger {
-            border-top: 4px solid #ef4444 !important;
-        }
-
-        .oh-card-dashboard--success,
-        .oh-card-dashboard--warning,
-        .oh-card-dashboard--neutral,
-        .oh-card-dashboard--danger {
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 65%),
-                rgba(17, 24, 50, 0.95) !important;
-        }
-
-        .oh-dashboard__events {
-            overflow: hidden !important;
-        }
-
-        .oh-dashboard__event--purple,
-        .oh-dashboard__event--crimson,
-        .oh-dashboard__event {
-            background:
-                linear-gradient(135deg, rgba(239, 68, 68, 0.92), rgba(139, 92, 246, 0.76)) !important;
-            color: #ffffff !important;
-        }
-
-        .oh-dashboard__event *,
-        .oh-dashboard__event-title,
-        .oh-dashboard__event-date {
-            color: #ffffff !important;
-        }
-
-        .oh-empty,
-        .oh-empty__content,
-        .oh-no-record,
-        .oh-no-records,
-        .oh-not-found,
-        .oh-dashboard__events .oh-card-dashboard__body {
-            color: #cbd5e1 !important;
-        }
-
-        .oh-empty img,
-        .oh-empty svg,
-        .oh-no-record img,
-        .oh-no-records img {
-            opacity: 0.72 !important;
-            filter: brightness(1.45) contrast(0.9) saturate(0.7) !important;
-        }
-
-        .oh-sticky-table__tr:hover,
-        .oh-table__tr:hover,
-        tr:hover {
-            background: rgba(91, 129, 255, 0.10) !important;
-        }
-
-        .animated-background {
-            background:
-                linear-gradient(90deg, rgba(148, 163, 184, 0.08), rgba(148, 163, 184, 0.20), rgba(148, 163, 184, 0.08)) !important;
-            border-radius: 8px !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #94a3b8 !important;
         }
     </style>
 
@@ -356,277 +132,37 @@
     {% endblock styles %}
 </head>
 
-
-<div hidden id="statiUrl" data-url='{% static "" %}'></div>
-
-<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    <span class="logged-in" data-user-id="{{request.user.id}}"></span>
-    <div id="reloadMessages">
-        {% include "generic/messages.html" %}
-    </div>
-    {% if messages %}
-        <div class="oh-alert-container">
-            {% for message in messages %}
-                <div class="oh-alert oh-alert--animated {{message.tags}}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    {% if is_birthday %}
-        <div class="page-wrapper">
-            <div class="blurred-background"></div>
-            <canvas id="c"></canvas>
-        </div>
-    {% endif %}
-    <button id="reloadMessagesButton" hx-get="{% url 'reload-messages' %}" hx-swap="afterend" hidden hx-target="#reloadMessages"></button>
-
-    <div class="oh-wrapper-main">
-
-        <!-- Start of Sidebar -->
-        <div id="sidebar">
+<body class="oh-body">
+    <div id="main-section-data" style="display: none;" data-lang="{{LANGUAGE_CODE}}">
+        <div class="oh-main">
             {% include 'sidebar.html' %}
-        </div>
-        <!-- End of Sidebar -->
 
-        <div id="main">
-            <!-- Start of Confirmation Modal -->
-            <div class="oh-modal" id="confirmModal" role="dialog" aria-labelledby="confirmModalLabel"
-                aria-hidden="true">
-                <div class="oh-modal__dialog oh-modal__dialog--confirm">
-                    <div class="oh-modal__dialog-header">
-                        <span class="oh-modal__dialog-title" id="confirmModalLabel"></span>
-                    </div>
-                    <div class="oh-modal__dialog-body" id="confirmModalBody">
+            <div class="oh-main__content-wrapper">
+                {% include 'navbar.html' %}
 
-                    </div>
-                    <div class="oh-modal__dialog-footer">
-                        <button class="oh-btn oh-btn--success" id="ok">{% trans "Confirm" %}</button>
-                        <button class="oh-btn oh-btn--danger oh-modal__cancel" id="cancel">
-                            {% trans "Cancel" %}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- End of Confirm Modal -->
-
-            <!-- Start of Notifications activity bar -->
-            <div class="oh-activity-sidebar " id="allNotifications" style="z-index:1000">
-                <div class="oh-activity-sidebar__header">
-                    <span id="notificationClose" style="cursor: pointer;" title="{% trans 'Close' %}">
-                        <ion-icon name="chevron-forward-outline"
-                            class="oh-activity-sidebar__header-icon me-2 oh-activity-sidebar__close" id="close"
-                            data-target="#activitySidebar" style="font-size: 24px;"></ion-icon>
-                    </span>
-                    <span class="oh-activity-sidebar__title"> {% trans "All Notifications" %}</span>
-                    <a class="delete-all-link" hx-target="#allNotificationBody"
-                        hx-post="{% url 'delete-all-notifications'%}">{% trans "Clear all" %}</a>
-                </div>
-                <div class="oh-activity-sidebar__body" id="allNotificationBody">
-                    {% include "notification/all_notifications.html" %}
-                </div>
-            </div>
-            <!-- End of Notifications activity bar -->
-
-            <!-- Start of Nav bar -->
-            <nav class="oh-navbar" style="width: -webkit-fill-available;;">
-                <div class="oh-wrapper oh-navbar__wrapper">
-                    <div class="oh-navbar__toggle-container">
-                        <a href="#" class="oh-navbar__toggle-link oh-link__unstyled" onclick="handleSidebarToggle()">
-                            <img src="{% static 'images/ui/menu.svg' %}" width="24" height="24"
-                                class="oh-navbar__toggle-menu" loading="lazy" />
-                        </a>
-
-                        {% if breadcrumbs %}
-                            <!-- Start of breadcrumb in nav bar -->
-                            {% include "base/navbar_components/breadcrumbs_view.html" %}
-                            <!-- End of breadcrumb in nav bar -->
-                        {% endif %}
-                        </a>
-                    </div>
-                    <div class="oh-navbar__systray">
-                        {% if "attendance"|app_installed %}
-                            <!-- Start of check in/out button in nav bar -->
-                            <div id="attendance-activity-container">
-                                {% include "attendance/components/in_out_component.html" %}
-                            </div>
-                            <!-- End of check in/out button in nav bar -->
-                        {% endif %}
-
-                        {% if request.user|any_permission:'base' or perms.attendance.view_attendancevalidationcondition %}
-                            <!-- Start of settings button in nav bar -->
-                            <div class="oh-navbar__action-icons" title="{% trans 'Settings' %}">
-                                <a href="{% url 'general-settings' %}" id="settingsMenu" class="oh-navbar__action-icons-link">
-                                    <ion-icon name="settings-outline" class="oh-navbar__icon"></ion-icon>
-                                </a>
-                            </div>
-                            <!-- End of settings button in nav bar -->
-                        {% endif %}
-
-                        <!-- Start of notifications button in nav bar -->
-                        {% include 'notification/notification.html' %}
-                        <!-- End of notifications button in nav bar -->
-
-                        <!-- Start of Languages dropdown in nav bar -->
-                        {% include "base/navbar_components/language_settings.html" %}
-                        <!-- End of Languages dropdown in nav bar -->
-
-                        {% if perms.base.change_company %}
-                            <!-- Start of Companies dropdown in nav bar -->
-                            {% include "base/navbar_components/company_selection.html" %}
-                            <!-- End of Companies dropdown in nav bar -->
-                        {% endif %}
-
-                        <!-- Start of profile dropdown in nav bar -->
-                        {% include "navbar_component/profile_section.html" %}
-                        <!-- End of profile dropdown in nav bar -->
-                    </div>
-                </div>
-                <!-- Start of quick access in index page -->
-                {% include "floating_button.html" %}
-                <!-- End of quick access in index page -->
-            </nav>
-            <!-- End of Nav bar -->
-
-            <!-- Start of main section -->
-            <div id='main-section'>
-                {% comment %} <div id="tripple-loader-contaner"
-                    class="d-flex justify-content-center align-items-center  tripple-loader-contaner--visible"
-                    style="height:90vh;">
-                    <div class="triple-spinner"></div>
-                </div> {% endcomment %}
-                <div id="main-section-data" style="display: none;" data-lang="{{LANGUAGE_CODE}}">
+                <main class="oh-main__content" id="view-container">
                     {% block content %}
-                        {% include 'dashboard.html' %}
-                    {% endblock content %}
-                    <div class="oh-modal" id="genericModal" role="dialog" aria-labelledby="genericModal" aria-hidden="true">
-                        <div class="oh-modal__dialog" id="genericModalBody"></div>
-                    </div>
-                    <div class="oh-modal" style="z-index: 100;" id="objectDetailsModal" role="dialog"
-                        aria-labelledby="objectDetailsModalLabel" aria-hidden="true">
-                        <div class="oh-modal__dialog oh-modal__dialog-relative" style="max-width: 550px" id="objectDetailsModalTarget"> </div>
-                    </div>
-                    <div class="oh-modal" style="z-index: 100;" id="objectDetailsModalW25" role="dialog"
-                        aria-labelledby="objectDetailsModalW25Label" aria-hidden="true">
-                        <div class="oh-modal__dialog oh-modal__dialog-relative" style="max-width: 410px" id="objectDetailsModalW25Target"> </div>
-                    </div>
-                    <div class="oh-modal" id="objectCreateModal" role="dialog" aria-labelledby="objectCreateModalLabel" aria-hidden="true">
-                        <div class="oh-modal__dialog" id="objectCreateModalTarget"></div>
-                    </div>
-                    <div class="oh-modal" id="objectUpdateModal" role="dialog" aria-labelledby="objectUpdateModalLabel" aria-hidden="true">
-                        <div class="oh-modal__dialog" id="objectUpdateModalTarget"></div>
-                    </div>
-                    <div class="oh-modal" id="dynamicCreateModal" role="dialog" aria-hidden="true" style="z-index: 1022;">
-                        <div id="dynamicCreateModalTarget" class="oh-modal__dialog" style="max-width: 550px"></div>
-                    </div>
-                </div>
+                    {% endblock %}
+                </main>
             </div>
-            <!-- End of main section -->
         </div>
     </div>
 
-    <!--htmx script -->
-    <script src="{% static 'build/js/web.frontend.min.js' %}"></script>
-    <script src="{% static 'htmx/htmx.min.js' %}"></script>
+    <div id="objectCreateModalTarget"></div>
+    <div id="objectUpdateModalTarget"></div>
+    <div id="objectDetailsModalTarget"></div>
+
+    <script src="{% static 'build/js/style.min.js' %}"></script>
+    <script src="{% static 'build/js/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'build/js/main.js' %}"></script>
+    
+    {% block scripts %}
+    {% endblock scripts %}
+
     <script>
-        document.body.addEventListener('htmx:configRequest', (event) => {
-            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-        })
+        $(document).ready(function() {
+            $('#main-section-data').fadeIn(500);
+        });
     </script>
-    <!-- this is the master js  -->
-    <script src="{% static '/index/index.js' %}"></script>
-    <script src="{% static '/index/saveFilters.js' %}"></script>
-    <script src="{% static 'build/js/htmxSelect2.js' %}"></script>
-    <script src="{% static 'build/js/summernote-lite.min.js' %}"></script>
-    <script src="{% static '/index/country.js' %}"></script>
-
-    <!-- This CDN is for date format change -->
-    <script src="{% static 'build/js/moment.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
-
-    <script src="{% static '/base/date_settings.js' %}"></script>
-    <script src="{% static '/base/time_formatting.js' %}"></script>
-    <script src="{% static '/base/time_settings.js' %}"></script>
-    <script src="{% static '/base/date_formatting.js' %}"></script>
-
-    <script src="{% static 'build/js/pivottable.min.js' %}"></script>
-    <script src="{% static 'build/js/pivottable_plot.min.js' %}"></script>
-    <script src="{% static 'build/js/pivottable_ploty.min.js' %}"></script>
-    <script src="{% static 'build/js/pivottable_excel.min.js' %}"></script>
-
-    {% if "attendance"|app_installed %}
-        <script src="{% static 'attendance/actions.js' %}"></script>
-    {% endif %}
-    <script type="module" src="{% static 'images/ionicons/ui_icons/ionicons/ionicons.esm.js' %}"></script>
-    <script src="{% static '/build/js/sweetAlert.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Clear all query parameters from the URL
-        function clearQueryParameters() {
-            var urlWithoutQuery = window.location.origin + window.location.pathname;
-            window.history.replaceState({}, document.title, urlWithoutQuery);
-        }
-    </script>
-    {% if enabled_timerunner %}
-        <script>
-            // time-runner
-            function secondsToDuration(seconds) {
-                var hours = Math.floor(seconds / 3600);
-                var minutes = Math.floor((seconds % 3600) / 60);
-                var remainingSeconds = Math.floor(seconds % 60);
-
-                // add leading zeros if necessary
-                var formattedHours = (hours < 10) ? "0" + hours : hours;
-                var formattedMinutes = (minutes < 10) ? "0" + minutes : minutes;
-                var formattedSeconds = (remainingSeconds < 10) ? "0" + remainingSeconds : remainingSeconds;
-
-                return formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
-            }
-            // accessing initial worked hours from the user
-            $(".time-runner").not("title").html(secondsToDuration(at_work_seconds));
-            $("title.time-runner").html("{{white_label_company_name}} | " + secondsToDuration(at_work_seconds));
-            setInterval(() => {
-                if (run) {
-                    at_work_seconds = at_work_seconds + 1
-                    $("div.time-runner").html(secondsToDuration(at_work_seconds));
-                    $("title").html("{{white_label_company_name}} | " + secondsToDuration(at_work_seconds));
-                }
-            }, 1000);
-
-            function switchTab(e) {
-                let parentContainerEl = e.target.closest(".oh-tabs");
-                let tabElement = e.target.closest(".oh-tabs__tab");
-                let targetSelector = e.target.dataset.target;
-                let targetEl = parentContainerEl
-                    ? parentContainerEl.querySelector(targetSelector)
-                    : null;
-
-                // Highlight active tabs
-                if (tabElement && !tabElement.classList.contains("oh-tabs__tab--active")) {
-                    parentContainerEl
-                        .querySelectorAll(".oh-tabs__tab--active")
-                        .forEach(function (item) {
-                            item.classList.remove("oh-tabs__tab--active");
-                        });
-
-                    if (!tabElement.classList.contains("oh-tabs__new-tab")) {
-                        tabElement.classList.add("oh-tabs__tab--active");
-                    }
-                }
-
-                // Switch tabs
-                if (targetEl && !targetEl.classList.contains("oh-tabs__content--active")) {
-                    parentContainerEl
-                        .querySelectorAll(".oh-tabs__content--active")
-                        .forEach(function (item) {
-                            item.classList.remove("oh-tabs__content--active");
-                        });
-                    targetEl.classList.add("oh-tabs__content--active");
-                }
-            }
-        </script>
-    {% endif %}
 </body>
-
 </html>
-
